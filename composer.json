@@ -1,0 +1,41 @@
+{
+    "name": "php-etl/pipeline-console-runtime",
+    "description": "This library allows you to use the pipeline console runtime",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kiboko SAS",
+            "homepage": "http://kiboko.fr"
+        },
+        {
+            "name": "Grégory Planchat",
+            "email": "gregory@kiboko.fr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0",
+        "symfony/console": "^5.2",
+        "php-etl/pipeline-contracts": "^0.3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kiboko\\Component\\Runtime\\PipelineConsoleRuntime\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "functional\\Kiboko\\Component\\Runtime\\PipelineConsoleRuntime\\": "tests/unit/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
