@@ -11,7 +11,7 @@ use Kiboko\Contract\Pipeline\RejectionInterface;
 use Kiboko\Contract\Pipeline\StateInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-final class PipelineConsoleRuntime implements PipelineRuntimeInterface
+final class Console implements PipelineRuntimeInterface
 {
     private State\StateOutput\Pipeline $state;
 
