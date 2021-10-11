@@ -1,7 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\Runtime\PipelineConsoleRuntime;
+namespace Kiboko\Component\Runtime\Pipeline;
 
+use Kiboko\Component\State;
 use Kiboko\Contract\Pipeline\ExtractorInterface;
 use Kiboko\Contract\Pipeline\TransformerInterface;
 use Kiboko\Contract\Pipeline\LoaderInterface;
@@ -12,14 +13,14 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 final class PipelineConsoleRuntime implements PipelineRuntimeInterface
 {
-    private StateOutput\Pipeline $state;
+    private State\StateOutput\Pipeline $state;
 
     public function __construct(
         ConsoleOutput $output,
         private PipelineInterface $pipeline,
-        ?StateOutput\Pipeline $state = null
+        ?State\StateOutput\Pipeline $state = null
     ) {
-        $this->state = $state  ?? new StateOutput\Pipeline($output, 'A', 'Pipeline');
+        $this->state = $state ?? new State\StateOutput\Pipeline($output, 'A', 'Pipeline');
     }
 
     public function extract(
@@ -27,7 +28,7 @@ final class PipelineConsoleRuntime implements PipelineRuntimeInterface
         RejectionInterface $rejection,
         StateInterface $state,
     ): self {
-        $this->pipeline->extract($extractor, $rejection, $state = new MemoryState($state));
+        $this->pipeline->extract($extractor, $rejection, $state = new State\MemoryState($state));
 
         $this->state->withStep('extractor')
             ->addMetric('read', $state->observeAccept())
@@ -42,7 +43,7 @@ final class PipelineConsoleRuntime implements PipelineRuntimeInterface
         RejectionInterface $rejection,
         StateInterface $state,
     ): self {
-        $this->pipeline->transform($transformer, $rejection, $state = new MemoryState($state));
+        $this->pipeline->transform($transformer, $rejection, $state = new State\MemoryState($state));
 
         $this->state->withStep('transformer')
             ->addMetric('read', $state->observeAccept())
@@ -57,7 +58,7 @@ final class PipelineConsoleRuntime implements PipelineRuntimeInterface
         RejectionInterface $rejection,
         StateInterface $state,
     ): self {
-        $this->pipeline->load($loader, $rejection, $state = new MemoryState($state));
+        $this->pipeline->load($loader, $rejection, $state = new State\MemoryState($state));
 
         $this->state->withStep('loader')
             ->addMetric('read', $state->observeAccept())

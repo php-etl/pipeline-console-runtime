@@ -18,16 +18,17 @@
     "require": {
         "php": "^8.0",
         "symfony/console": "^5.2",
-        "php-etl/pipeline-contracts": "^0.3.0"
+        "php-etl/pipeline-contracts": "^0.3.0",
+        "php-etl/console-state": "^0.1.0"
     },
     "autoload": {
         "psr-4": {
-            "Kiboko\\Component\\Runtime\\PipelineConsoleRuntime\\": "src/"
+            "Kiboko\\Component\\Runtime\\Pipeline\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "functional\\Kiboko\\Component\\Runtime\\PipelineConsoleRuntime\\": "tests/unit/"
+            "functional\\Kiboko\\Component\\Runtime\\Pipeline\\": "tests/unit/"
         }
     },
     "config": {

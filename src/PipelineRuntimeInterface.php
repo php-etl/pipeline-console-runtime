@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Kiboko\Component\Runtime\PipelineConsoleRuntime;
+namespace Kiboko\Component\Runtime\Pipeline;
 
 use Kiboko\Contract\Pipeline\ExtractingInterface;
 use Kiboko\Contract\Pipeline\LoadingInterface;
