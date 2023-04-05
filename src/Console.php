@@ -1,23 +1,26 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Kiboko\Component\Runtime\Pipeline;
 
 use Kiboko\Component\State;
 use Kiboko\Contract\Pipeline\ExtractorInterface;
-use Kiboko\Contract\Pipeline\TransformerInterface;
 use Kiboko\Contract\Pipeline\LoaderInterface;
 use Kiboko\Contract\Pipeline\PipelineInterface;
 use Kiboko\Contract\Pipeline\RejectionInterface;
 use Kiboko\Contract\Pipeline\StateInterface;
+use Kiboko\Contract\Pipeline\TransformerInterface;
+use Kiboko\Contract\Pipeline\WalkableInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 final class Console implements PipelineRuntimeInterface
 {
-    private State\StateOutput\Pipeline $state;
+    private readonly State\StateOutput\Pipeline $state;
 
     public function __construct(
         ConsoleOutput $output,
-        private PipelineInterface $pipeline,
+        private readonly PipelineInterface&WalkableInterface $pipeline,
         ?State\StateOutput\Pipeline $state = null
     ) {
         $this->state = $state ?? new State\StateOutput\Pipeline($output, 'A', 'Pipeline');
@@ -33,7 +36,8 @@ final class Console implements PipelineRuntimeInterface
         $this->state->withStep('extractor')
             ->addMetric('read', $state->observeAccept())
             ->addMetric('error', fn () => 0)
-            ->addMetric('rejected', $state->observeReject());
+            ->addMetric('rejected', $state->observeReject())
+        ;
 
         return $this;
     }
@@ -48,7 +52,8 @@ final class Console implements PipelineRuntimeInterface
         $this->state->withStep('transformer')
             ->addMetric('read', $state->observeAccept())
             ->addMetric('error', fn () => 0)
-            ->addMetric('rejected', $state->observeReject());
+            ->addMetric('rejected', $state->observeReject())
+        ;
 
         return $this;
     }
@@ -63,7 +68,8 @@ final class Console implements PipelineRuntimeInterface
         $this->state->withStep('loader')
             ->addMetric('read', $state->observeAccept())
             ->addMetric('error', fn () => 0)
-            ->addMetric('rejected', $state->observeReject());
+            ->addMetric('rejected', $state->observeReject())
+        ;
 
         return $this;
     }
@@ -72,10 +78,10 @@ final class Console implements PipelineRuntimeInterface
     {
         $line = 0;
         foreach ($this->pipeline->walk() as $item) {
-            if ($line++ % $interval === 0) {
+            if (0 === $line++ % $interval) {
                 $this->state->update();
             }
-        };
+        }
         $this->state->update();
 
         return $line;
