@@ -31,11 +31,6 @@
             "Kiboko\\Component\\Runtime\\Pipeline\\": "src/"
         }
     },
-    "autoload-dev": {
-        "psr-4": {
-            "functional\\Kiboko\\Component\\Runtime\\Pipeline\\": "tests/unit/"
-        }
-    },
     "config": {
         "bin-dir": "bin"
     },
