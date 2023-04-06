@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "29063f65498a9149715fb262fafe9ba2",
+    "content-hash": "7079608a451f4a99f78737d1b6854d4e",
     "packages": [
         {
             "name": "php-etl/bucket-contracts",
@@ -66,17 +66,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/console-state.git",
-                "reference": "e59c1a9a67425093c3527a7470bca3e1940a7ccb"
+                "reference": "728df463440861d787e4f159eb45215b859e731e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/console-state/zipball/e59c1a9a67425093c3527a7470bca3e1940a7ccb",
-                "reference": "e59c1a9a67425093c3527a7470bca3e1940a7ccb",
+                "url": "https://api.github.com/repos/php-etl/console-state/zipball/728df463440861d787e4f159eb45215b859e731e",
+                "reference": "728df463440861d787e4f159eb45215b859e731e",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.2",
-                "php-etl/pipeline-contracts": "^0.4.0",
+                "php-etl/pipeline-contracts": "0.4.0",
                 "symfony/console": "^6.0"
             },
             "require-dev": {
@@ -116,7 +116,7 @@
                 "issues": "https://github.com/php-etl/console-state/issues",
                 "source": "https://github.com/php-etl/console-state/tree/v0.2.0"
             },
-            "time": "2023-04-05T07:43:22+00:00"
+            "time": "2023-04-06T12:58:19+00:00"
         },
         {
             "name": "php-etl/pipeline-contracts",
@@ -124,17 +124,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/pipeline-contracts.git",
-                "reference": "5fe30e55ac4af2ea23a15adba2ed349eb55db124"
+                "reference": "47e1e32aedb425c4624c1f6d9acf5ae839287fdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/pipeline-contracts/zipball/5fe30e55ac4af2ea23a15adba2ed349eb55db124",
-                "reference": "5fe30e55ac4af2ea23a15adba2ed349eb55db124",
+                "url": "https://api.github.com/repos/php-etl/pipeline-contracts/zipball/47e1e32aedb425c4624c1f6d9acf5ae839287fdf",
+                "reference": "47e1e32aedb425c4624c1f6d9acf5ae839287fdf",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.2",
-                "php-etl/bucket-contracts": "^0.2"
+                "php-etl/bucket-contracts": "0.2.0"
             },
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.0",
@@ -171,7 +171,7 @@
                 "issues": "https://github.com/php-etl/pipeline-contracts/issues",
                 "source": "https://github.com/php-etl/pipeline-contracts/tree/v0.4.0"
             },
-            "time": "2023-04-03T13:09:59+00:00"
+            "time": "2023-04-06T10:08:37+00:00"
         },
         {
             "name": "psr/container",
