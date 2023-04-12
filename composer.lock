@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7079608a451f4a99f78737d1b6854d4e",
+    "content-hash": "2b072018a9425cdc7b3d9700e7f1c3fe",
     "packages": [
         {
             "name": "php-etl/bucket-contracts",
@@ -66,17 +66,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-etl/console-state.git",
-                "reference": "728df463440861d787e4f159eb45215b859e731e"
+                "reference": "830d3f55506b1a743c6b8a12c62def7025188650"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-etl/console-state/zipball/728df463440861d787e4f159eb45215b859e731e",
-                "reference": "728df463440861d787e4f159eb45215b859e731e",
+                "url": "https://api.github.com/repos/php-etl/console-state/zipball/830d3f55506b1a743c6b8a12c62def7025188650",
+                "reference": "830d3f55506b1a743c6b8a12c62def7025188650",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.2",
-                "php-etl/pipeline-contracts": "0.4.0",
+                "php-etl/pipeline-contracts": "0.4.*",
                 "symfony/console": "^6.0"
             },
             "require-dev": {
@@ -116,7 +116,7 @@
                 "issues": "https://github.com/php-etl/console-state/issues",
                 "source": "https://github.com/php-etl/console-state/tree/v0.2.0"
             },
-            "time": "2023-04-06T12:58:19+00:00"
+            "time": "2023-04-12T12:55:42+00:00"
         },
         {
             "name": "php-etl/pipeline-contracts",
@@ -1361,16 +1361,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.11",
+            "version": "1.10.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "8aa62e6ea8b58ffb650e02940e55a788cbc3fe21"
+                "reference": "7b2aaf999e522e2b10011a594cf06dc37de7fbd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8aa62e6ea8b58ffb650e02940e55a788cbc3fe21",
-                "reference": "8aa62e6ea8b58ffb650e02940e55a788cbc3fe21",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/7b2aaf999e522e2b10011a594cf06dc37de7fbd8",
+                "reference": "7b2aaf999e522e2b10011a594cf06dc37de7fbd8",
                 "shasum": ""
             },
             "require": {
@@ -1419,7 +1419,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-04-04T19:17:42+00:00"
+            "time": "2023-04-12T10:33:29+00:00"
         },
         {
             "name": "psr/cache",
