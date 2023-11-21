@@ -4,36 +4,38 @@ declare(strict_types=1);
 
 namespace Kiboko\Component\Runtime\Pipeline;
 
-use Kiboko\Component\State;
 use Kiboko\Contract\Pipeline\ExtractorInterface;
 use Kiboko\Contract\Pipeline\LoaderInterface;
 use Kiboko\Contract\Pipeline\PipelineInterface;
-use Kiboko\Contract\Pipeline\RejectionInterface;
-use Kiboko\Contract\Pipeline\StateInterface;
+use Kiboko\Contract\Pipeline\StepCodeInterface;
+use Kiboko\Contract\Pipeline\StepRejectionInterface;
+use Kiboko\Contract\Pipeline\StepStateInterface;
 use Kiboko\Contract\Pipeline\TransformerInterface;
 use Kiboko\Contract\Pipeline\WalkableInterface;
+use Kiboko\Component\Runtime\Pipeline\Step\MemoryState;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 final class Console implements PipelineRuntimeInterface
 {
-    private readonly State\StateOutput\Pipeline $state;
+    private readonly Pipeline $state;
 
     public function __construct(
         ConsoleOutput $output,
         private readonly PipelineInterface&WalkableInterface $pipeline,
-        ?State\StateOutput\Pipeline $state = null
+        ?Pipeline $state = null
     ) {
-        $this->state = $state ?? new State\StateOutput\Pipeline($output, 'A', 'Pipeline');
+        $this->state = $state ?? new Pipeline($output, 'A', 'Pipeline');
     }
 
     public function extract(
+        StepCodeInterface $step,
         ExtractorInterface $extractor,
-        RejectionInterface $rejection,
-        StateInterface $state,
+        StepRejectionInterface $rejection,
+        StepStateInterface $state,
     ): self {
-        $this->pipeline->extract($extractor, $rejection, $state = new State\MemoryState($state));
+        $this->pipeline->extract($step, $extractor, $rejection, $state = new MemoryState($state));
 
-        $this->state->withStep('extractor')
+        $this->state->withStep((string) $step)
             ->addMetric('read', $state->observeAccept())
             ->addMetric('error', fn () => 0)
             ->addMetric('rejected', $state->observeReject())
@@ -43,13 +45,14 @@ final class Console implements PipelineRuntimeInterface
     }
 
     public function transform(
+        StepCodeInterface $step,
         TransformerInterface $transformer,
-        RejectionInterface $rejection,
-        StateInterface $state,
+        StepRejectionInterface $rejection,
+        StepStateInterface $state,
     ): self {
-        $this->pipeline->transform($transformer, $rejection, $state = new State\MemoryState($state));
+        $this->pipeline->transform($step, $transformer, $rejection, $state = new MemoryState($state));
 
-        $this->state->withStep('transformer')
+        $this->state->withStep((string) $step)
             ->addMetric('read', $state->observeAccept())
             ->addMetric('error', fn () => 0)
             ->addMetric('rejected', $state->observeReject())
@@ -59,13 +62,14 @@ final class Console implements PipelineRuntimeInterface
     }
 
     public function load(
+        StepCodeInterface $step,
         LoaderInterface $loader,
-        RejectionInterface $rejection,
-        StateInterface $state,
+        StepRejectionInterface $rejection,
+        StepStateInterface $state,
     ): self {
-        $this->pipeline->load($loader, $rejection, $state = new State\MemoryState($state));
+        $this->pipeline->load($step, $loader, $rejection, $state = new MemoryState($state));
 
-        $this->state->withStep('loader')
+        $this->state->withStep((string) $step)
             ->addMetric('read', $state->observeAccept())
             ->addMetric('error', fn () => 0)
             ->addMetric('rejected', $state->observeReject())
