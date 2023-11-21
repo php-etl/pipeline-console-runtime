@@ -42,13 +42,13 @@ final class MemoryState implements StepStateInterface
         return fn () => $this->metrics['accept'];
     }
 
+    public function observeError(): callable
+    {
+        return fn () => $this->metrics['accept'];
+    }
+
     public function observeReject(): callable
     {
         return fn () => $this->metrics['reject'];
-    }
-
-    public function teardown(): void
-    {
-        $this->decorated?->teardown();
     }
 }

@@ -37,7 +37,7 @@ final class Console implements PipelineRuntimeInterface
 
         $this->state->withStep((string) $step)
             ->addMetric('read', $state->observeAccept())
-            ->addMetric('error', fn () => 0)
+            ->addMetric('error', $state->observeError())
             ->addMetric('rejected', $state->observeReject())
         ;
 

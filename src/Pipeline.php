@@ -10,7 +10,7 @@ use Symfony\Component\Console\Output\ConsoleSectionOutput;
 
 final class Pipeline
 {
-    /** @var Step */
+    /** @var list<Step> */
     private array $steps = [];
     private readonly ConsoleSectionOutput $section;
 

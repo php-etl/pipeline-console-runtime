@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Kiboko\Component\Runtime\Pipeline;
 
 use Kiboko\Contract\Pipeline\StateInterface;
+use Kiboko\Contract\Pipeline\StepCodeInterface;
 
 final class MemoryState implements StateInterface
 {
@@ -26,27 +27,32 @@ final class MemoryState implements StateInterface
         $this->decorated?->initialize($start);
     }
 
-    public function accept(int $step = 1): void
+    public function accept(StepCodeInterface $step, int $count = 1): void
     {
-        $this->metrics['accept'] += $step;
+        $this->metrics['accept'] += $count;
         $this->decorated?->accept($step);
     }
 
-    public function reject(int $step = 1): void
+    public function reject(StepCodeInterface $step, int $count = 1): void
     {
-        $this->metrics['reject'] += $step;
+        $this->metrics['reject'] += $count;
         $this->decorated?->reject($step);
     }
 
-    public function error(int $step = 1): void
+    public function error(StepCodeInterface $step, int $count = 1): void
     {
-        $this->metrics['error'] += $step;
+        $this->metrics['error'] += $count;
         $this->decorated?->error($step);
     }
 
     public function observeAccept(): callable
     {
         return fn () => $this->metrics['accept'];
+    }
+
+    public function observeError(): callable
+    {
+        return fn () => $this->metrics['error'];
     }
 
     public function observeReject(): callable
