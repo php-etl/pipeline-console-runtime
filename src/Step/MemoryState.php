@@ -8,6 +8,7 @@ use Kiboko\Contract\Pipeline\StepStateInterface;
 
 final class MemoryState implements StepStateInterface
 {
+    /** @var array<string, int> */
     private array $metrics = [
         'accept' => 0,
         'reject' => 0,
