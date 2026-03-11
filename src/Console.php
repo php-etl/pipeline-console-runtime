@@ -27,6 +27,9 @@ final class Console implements PipelineRuntimeInterface
         $this->state = $state ?? new Pipeline($output, 'A', 'Pipeline');
     }
 
+    /**
+     * @param StepRejectionInterface<array<string, mixed>|object> $rejection
+     */
     public function extract(
         StepCodeInterface $step,
         ExtractorInterface $extractor,
@@ -44,6 +47,9 @@ final class Console implements PipelineRuntimeInterface
         return $this;
     }
 
+    /**
+     * @param StepRejectionInterface<array<string, mixed>|object> $rejection
+     */
     public function transform(
         StepCodeInterface $step,
         TransformerInterface $transformer,
@@ -61,6 +67,9 @@ final class Console implements PipelineRuntimeInterface
         return $this;
     }
 
+    /**
+     * @param StepRejectionInterface<array<string, mixed>|object> $rejection
+     */
     public function load(
         StepCodeInterface $step,
         LoaderInterface $loader,

@@ -9,6 +9,7 @@ use Kiboko\Contract\Pipeline\StepCodeInterface;
 
 final class MemoryState implements StateInterface
 {
+    /** @var array<string, int> */
     private array $metrics = [];
 
     public function __construct(
